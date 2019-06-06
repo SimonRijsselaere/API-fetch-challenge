@@ -1,0 +1,20 @@
+.container{
+    /*position: relative;*/
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+}
+.wrapper{
+    position: relative;
+    width: 100%;
+    display: flex;
+    border-style: solid;
+    border-color: red;
+
+}
+
+
+.beerImage{
+    width: 3em;
+    height: auto;
+}
