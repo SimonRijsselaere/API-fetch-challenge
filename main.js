@@ -31,16 +31,28 @@ function displayRandomBeer(data) {
 function displayOverviewBeer(data){
     // let overviewBeer = data;
     console.log(data);
-    displayAllBeers.innerHTML = `<ol>
+    displayAllBeers.innerHTML = `
                                   ${Object.keys(data).map(key => (
-                                    `<li>${data[key].name} : ${data[key].tagline} <img src=${data[key].image_url}></li>`
+                                    `<div class="card m-0" style="width: 18rem;">
+                                      <img class="card-img-top" src="${data[key].image_url}" alt="">
+                                      <div class="card-body">
+                                        <h5 class="card-title">${data[key].name}</h5>
+                                        <p class="card-text">S${data[key].tagline}</p>
+                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                      </div>
+                                    </div>`
                                   )).join(' ')}
-                                  </ol>`;
-  if (true) {
-
-  }
+                                  `;
 }
 
+/*`<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="${data[key].image_url}" alt="">
+  <div class="card-body">
+    <h5 class="card-title">${data[key].name}</h5>
+    <p class="card-text">S${data[key].tagline}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>`*/
 
 fetch(all)
     .then((resp) => resp.json())
