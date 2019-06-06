@@ -38,3 +38,10 @@
 .collapse{
     overflow: auto;
 }
+
+body{
+  background-image: url("beer-bg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}

@@ -1,4 +1,3 @@
-
 let pageNumber = 1;
 let all = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=80`;
 const random = 'https://api.punkapi.com/v2/beers/random';
@@ -6,23 +5,42 @@ const displayRandom = document.getElementById("randomBeers");
 const displayAllBeers = document.getElementById('allbeers');
 const updateButton = document.getElementById('updatepage');
 const updateRandom = document.getElementById('updateRandom');
+const sortPageButton = document.getElementById('sortPage');
 
-updateButton.addEventListener("click", function(){
+updateButton.addEventListener("click", function() {
   console.log("clicky");
   Number(pageNumber++);
   console.log(pageNumber);
   let all = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=80`;
   fetch(all)
-      .then((resp) => resp.json())
-      .then((data) => displayOverviewBeer(data));
+    .then((resp) => resp.json())
+    .then((data) => displayOverviewBeer(data));
   return pageNumber;
 });
 
 
-function displayOverviewBeer(data){
-    // let overviewBeer = data;
-    console.log(data);
-    displayAllBeers.innerHTML = `
+
+sortPageButton.addEventListener("click", function() {
+  function compare( a, b ) {
+    if ( a.name < b.name ){
+      return -1;
+    }
+    if ( a.name > b.name ){
+      return 1;
+    }
+    return 0;
+  }
+
+  data.sort( compare );
+});
+
+
+
+function displayOverviewBeer(data) {
+
+  // let overviewBeer = data;
+  console.log(data);
+  displayAllBeers.innerHTML = `
                                   ${Object.keys(data).map(key => (
                                     `<div id="cards" class="card d-inline-flex" style="width: 18rem;">
                                     <h5 class="card-title">${data[key].id}</h5>
@@ -50,24 +68,24 @@ function displayOverviewBeer(data){
 
 
 function displayRandomBeer(data) {
-    let randomBeer = data[0].name;
-    let randomImage = data[0].image_url;
+  let randomBeer = data[0].name;
+  let randomImage = data[0].image_url;
 
-    // console.table(data);
-    displayRandom.innerHTML = randomBeer;
-    displayRandom.innerHTML += "<br>";
-    displayRandom.innerHTML += `<img src=${randomImage}>`;
+  // console.table(data);
+  displayRandom.innerHTML = randomBeer;
+  displayRandom.innerHTML += "<br>";
+  displayRandom.innerHTML += `<img src=${randomImage}>`;
 };
 
 
 fetch(all)
+  .then((resp) => resp.json())
+  .then((data) => displayOverviewBeer(data));
+
+
+updateRandom.addEventListener("click", function() {
+  fetch(random)
     .then((resp) => resp.json())
-    .then((data) => displayOverviewBeer(data));
-
-
-updateRandom.addEventListener("click", function(){
-    fetch(random)
-        .then((resp) => resp.json())
-        .then((data) => displayRandomBeer(data));
-    return;
+    .then((data) => displayRandomBeer(data));
+  return;
 });
