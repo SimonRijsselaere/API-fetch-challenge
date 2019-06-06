@@ -1,38 +1,44 @@
 .container{
     /*position: relative;*/
     width: 100%;
-    border-style: solid;
-    border-color: black;
+    /*border-style: solid;*/
+    /*border-color: black;*/
 }
 
 #allbeers{
-    padding-left: 120px;
+    padding-left: 90px;
     padding-top: 50px;
-    border-style: solid;
-    border-color: red;
+    /*border-style: solid;*/
+    /*border-color: red;*/
 
 }
 
 #cards{
     display: flex;
-    display: block;
+    opacity: 0.85;
     overflow: auto;
     align-items: center;
     align-content: center;
     align-self: center;
     border-style: solid;
-    border-color: blue;
-    padding: 20px;
+    border-color: grey;
+    padding-top: 20px;
+    padding-bottom: 20px;
     height: 30em;
     width: auto;
 
 }
 
+.card-body{
+    margin-top: 18px;
+}
+
 .beerImage{
-    width: 3em;
-    height: auto;
-    border-style: solid;
-    border-color: green;
+    width: auto;
+    height: 12em;
+    object-fit: contain;
+    /*border-style: solid;*/
+    /*border-color: green;*/
 }
 
 .collapse{
@@ -44,4 +50,5 @@ body{
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+    text-align: center;
 }

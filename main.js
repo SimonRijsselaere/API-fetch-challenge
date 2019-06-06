@@ -69,11 +69,13 @@ function displayOverviewBeer(data) {
 
 function displayRandomBeer(data) {
   let randomBeer = data[0].name;
+  let randomKey = data[0].tagline;
   let randomImage = data[0].image_url;
 
-  // console.table(data);
+  console.table(data);
   displayRandom.innerHTML = randomBeer;
   displayRandom.innerHTML += "<br>";
+  displayRandom.innerHTML += randomKey;
   displayRandom.innerHTML += `<img src=${randomImage}>`;
 };
 
@@ -82,10 +84,12 @@ fetch(all)
   .then((resp) => resp.json())
   .then((data) => displayOverviewBeer(data));
 
-
 updateRandom.addEventListener("click", function() {
   fetch(random)
     .then((resp) => resp.json())
     .then((data) => displayRandomBeer(data));
   return;
 });
+
+
+
