@@ -5,6 +5,7 @@ const displayRandom = document.getElementById("randomBeers");
 const displayAllBeers = document.getElementById('allbeers');
 const updateButton = document.getElementById('updatepage');
 const updateRandom = document.getElementById('updateRandom');
+const nextButton = document.getElementById('nextPage');
 const sortPageButton = document.getElementById('sortPage');
 
 updateButton.addEventListener("click", function() {
@@ -17,8 +18,16 @@ updateButton.addEventListener("click", function() {
     .then((data) => displayOverviewBeer(data));
   return pageNumber;
 });
-
-
+nextButton.addEventListener("click", function() {
+  console.log("clicky");
+  Number(pageNumber++);
+  console.log(pageNumber);
+  let all = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=80`;
+  fetch(all)
+      .then((resp) => resp.json())
+      .then((data) => displayOverviewBeer(data));
+  return pageNumber;
+});
 
 sortPageButton.addEventListener("click", function() {
   function compare( a, b ) {
@@ -34,8 +43,6 @@ sortPageButton.addEventListener("click", function() {
   data.sort( compare );
 });
 
-
-
 function displayOverviewBeer(data) {
 
   // let overviewBeer = data;
@@ -47,7 +54,7 @@ function displayOverviewBeer(data) {
                                       <img  class="beerImage card-img-top" src="${data[key].image_url}" alt="">
                                       <div class="card-body">
                                         <h5 class="card-title">${data[key].name}</h5>
-                                        <p class="card-text">S${data[key].tagline}</p>
+                                        <p class="card-text">${data[key].tagline}</p>
                                         <a class="btn btn-primary" data-toggle="collapse" href="#${data[key].name}" role="button" aria-expanded="false" aria-controls="collapseExample">More info</a>
                                         <div class="collapse mt-2" id="${data[key].name}">
                                          <div class="card card-body">
@@ -66,7 +73,6 @@ function displayOverviewBeer(data) {
                                   `;
 }
 
-
 function displayRandomBeer(data) {
   let randomBeer = data[0].name;
   let randomKey = data[0].tagline;
@@ -78,7 +84,6 @@ function displayRandomBeer(data) {
   displayRandom.innerHTML += randomKey;
   displayRandom.innerHTML += `<img src=${randomImage}>`;
 };
-
 
 fetch(all)
   .then((resp) => resp.json())

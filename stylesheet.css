@@ -52,3 +52,8 @@ body{
   background-size: cover;
     text-align: center;
 }
+
+#nextPage{
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
