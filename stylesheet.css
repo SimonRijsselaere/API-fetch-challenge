@@ -4,17 +4,37 @@
     border-style: solid;
     border-color: black;
 }
-.wrapper{
-    position: relative;
-    width: 100%;
-    display: flex;
+
+#allbeers{
+    padding-left: 120px;
+    padding-top: 50px;
     border-style: solid;
     border-color: red;
 
 }
 
+#cards{
+    display: flex;
+    display: block;
+    overflow: auto;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    border-style: solid;
+    border-color: blue;
+    padding: 20px;
+    height: 30em;
+    width: auto;
+
+}
 
 .beerImage{
     width: 3em;
     height: auto;
+    border-style: solid;
+    border-color: green;
+}
+
+.collapse{
+    overflow: auto;
 }
