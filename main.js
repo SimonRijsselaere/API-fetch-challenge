@@ -1,10 +1,18 @@
 
 let pageNumber = 1;
-const all = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=80`;
+let all = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=80`;
 const random = 'https://api.punkapi.com/v2/beers/random';
 const displayRandom = document.getElementById("random");
 const displayOverview = document.getElementById("random");
 const displayAllBeers = document.getElementById('allbeers');
+const updateButton = document.getElementById('updatepage');
+
+updateButton.addEventListener("click", function(a){
+  console.log("clicky");
+  Number(pageNumber++);
+  console.log(pageNumber);
+  return pageNumber;
+});
 
 function displayRandomBeer(data) {
     let randomBeer = data[0].name;
@@ -23,14 +31,14 @@ function displayOverviewBeer(data){
                                   ${Object.keys(data).map(key => (
                                     `<li>${data[key].name} : ${data[key].tagline}</li>`
                                   )).join(' ')}
-                                  </ol>`
+                                  </ol>`;
+  if (true) {
+
+  }
 }
 
 
-function updatePage(pageNumber) {
-  pageNumber++;
-  return pageNumber;
-}
+
 
 
 fetch(all)
