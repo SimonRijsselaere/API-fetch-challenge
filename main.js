@@ -7,7 +7,7 @@ const displayAllBeers = document.getElementById('allbeers');
 const updateButton = document.getElementById('updatepage');
 const updateRandom = document.getElementById('updateRandom');
 
-updateButton.addEventListener("click", function(a){
+updateButton.addEventListener("click", function(){
   console.log("clicky");
   Number(pageNumber++);
   console.log(pageNumber);
