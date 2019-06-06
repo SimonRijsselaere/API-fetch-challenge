@@ -25,13 +25,24 @@ function displayOverviewBeer(data){
     displayAllBeers.innerHTML = `
                                   ${Object.keys(data).map(key => (
                                     `<div class="card d-inline-flex" style="width: 18rem;">
-                                      <img class="card-img-top" src="${data[key].image_url}" alt="">
+                                      <img  class="beerImage card-img-top" src="${data[key].image_url}" alt="">
                                       <div class="card-body">
                                         <h5 class="card-title">${data[key].name}</h5>
                                         <p class="card-text">S${data[key].tagline}</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                                      </div>
-                                    </div>`
+                                        <a class="btn btn-primary" data-toggle="collapse" href="#${data[key].name}" role="button" aria-expanded="false" aria-controls="collapseExample">More info</a>
+                                        <div class="collapse mt-2" id="${data[key].name}">
+                                         <div class="card card-body">
+                                          <ul>
+                                            <li>alcohol level: ${data[key].abv}%</li>
+                                            <li>tip from the brewer: ${data[key].brewers_tips}</li>
+                                            <li>description: ${data[key].description}</li>
+                                            <li>PH-level: ${data[key].ph}</li>
+                                            <li>contributed by: ${data[key].contributed_by}</li>
+                                          </ul>
+                                         </div>
+                                        </div>
+                                       </div>
+                                      </div>`
                                   )).join(' ')}
                                   `;
 }
