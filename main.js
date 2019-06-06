@@ -24,7 +24,7 @@ function displayOverviewBeer(data){
     console.log(data);
     displayAllBeers.innerHTML = `
                                   ${Object.keys(data).map(key => (
-                                    `<div class="card m-0" style="width: 18rem;">
+                                    `<div class="card d-inline-flex" style="width: 18rem;">
                                       <img class="card-img-top" src="${data[key].image_url}" alt="">
                                       <div class="card-body">
                                         <h5 class="card-title">${data[key].name}</h5>
@@ -59,6 +59,3 @@ updateRandom.addEventListener("click", function(){
         .then((data) => displayRandomBeer(data));
     return;
 });
-
-
-
