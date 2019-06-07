@@ -10,4 +10,4 @@ We use fetch to get the data from the API and display it using a mapfunction on 
 2.
 3.
 
-## link to the "live" version. The "live" version must contain a link to the source code on GitHub.
+## link to the "live" version
