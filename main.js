@@ -7,16 +7,35 @@ const updateButton = document.getElementById('updatepage');
 const updateRandom = document.getElementById('updateRandom');
 const nextButton = document.getElementById('nextPage');
 const sortPageButton = document.getElementById('sortPage');
-let nextPage = document.querySelectorAll(".nextpage");
+const nextPage = document.querySelectorAll(".nextpage");
+const lastPage = document.querySelectorAll(".previouspage");
 
+fetch(all)
+  .then((resp) => resp.json())
+  .then((data) => displayOverviewBeer(data));
+
+// Update list button and next page button grouped, loads next 80 beers
 nextPage.forEach(function(elem) {
    elem.addEventListener("click", function() {
-    if (pageNumber >= 5) {
+    if (pageNumber === 5) {
       return;
     }
-    console.log("clicky");
     Number(pageNumber++);
-    console.log(pageNumber);
+    let all = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=80`;
+    fetch(all)
+      .then((resp) => resp.json())
+      .then((data) => displayOverviewBeer(data));
+    return pageNumber;
+  });
+});
+
+// Update list button and next page button grouped, loads next 80 beers
+lastPage.forEach(function(elem) {
+   elem.addEventListener("click", function() {
+    if (pageNumber === 1) {
+      return;
+    }
+    Number(pageNumber--);
     let all = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=80`;
     fetch(all)
       .then((resp) => resp.json())
@@ -26,8 +45,11 @@ nextPage.forEach(function(elem) {
 });
 
 
+
+
 // Sorts the page Alphabetic.
 sortPageButton.addEventListener("click", function() {
+
   function compare( a, b ) {
     if ( a.name < b.name ){
       return -1;
@@ -98,9 +120,7 @@ function displayRandomBeer(data) {
 `;
 };
 
-fetch(all)
-  .then((resp) => resp.json())
-  .then((data) => displayOverviewBeer(data));
+
 
 updateRandom.addEventListener("click", function() {
   fetch(random)
