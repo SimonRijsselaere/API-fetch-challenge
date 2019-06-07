@@ -9,6 +9,9 @@ const nextButton = document.getElementById('nextPage');
 const sortPageButton = document.getElementById('sortPage');
 
 updateButton.addEventListener("click", function() {
+  if (pageNumber >= 5) {
+    return;
+  }
   console.log("clicky");
   Number(pageNumber++);
   console.log(pageNumber);
@@ -19,6 +22,9 @@ updateButton.addEventListener("click", function() {
   return pageNumber;
 });
 nextButton.addEventListener("click", function() {
+  if (pageNumber >= 5) {
+    return;
+  }
   console.log("clicky");
   Number(pageNumber++);
   console.log(pageNumber);
@@ -74,8 +80,8 @@ function displayOverviewBeer(data) {
 };
 
 function displayRandomBeer(data) {
-  displayRandom.innerHTML =` 
-  
+  displayRandom.innerHTML =`
+
   ${Object.keys(data).map(key => (
                                     `<div id="cards" class="card d-inline-flex" style="width: 18rem;">
                                     <h5 class="card-title">${data[key].id}</h5>
