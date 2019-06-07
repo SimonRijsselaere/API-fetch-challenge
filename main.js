@@ -47,7 +47,7 @@ function displayOverviewBeer(data) {
                                       <img  class="beerImage card-img-top" src="${data[key].image_url}" alt="">
                                       <div class="card-body">
                                         <h5 class="card-title">${data[key].name}</h5>
-                                        <p class="card-text">S${data[key].tagline}</p>
+                                        <p class="card-text">${data[key].tagline}</p>
                                         <a class="btn btn-primary" data-toggle="collapse" href="#${data[key].name}" role="button" aria-expanded="false" aria-controls="collapseExample">More info</a>
                                         <div class="collapse mt-2" id="${data[key].name}">
                                          <div class="card card-body">
