@@ -45,9 +45,8 @@ sortPageButton.addEventListener("click", function() {
 });
 
 function displayOverviewBeer(data) {
-
   // let overviewBeer = data;
-  console.log(data);
+  console.table(data);
   displayAllBeers.innerHTML = `
                                   ${Object.keys(data).map(key => (
                                     `<div id="cards" class="card d-inline-flex" style="width: 18rem;">
@@ -75,16 +74,6 @@ function displayOverviewBeer(data) {
 };
 
 function displayRandomBeer(data) {
-  // let randomBeer = data[0].name;
-  // let randomKey = data[0].tagline;
-  // let randomImage = data[0].image_url;
-  //
-  // console.table(data);
-  // displayRandom.innerHTML = randomBeer;
-  // displayRandom.innerHTML += "<br>";
-  // displayRandom.innerHTML += randomKey;
-  // displayRandom.innerHTML += `<img src=${randomImage}>`;
-
   displayRandom.innerHTML =` 
   
   ${Object.keys(data).map(key => (
@@ -110,9 +99,6 @@ function displayRandomBeer(data) {
   </div>`
 )).join(' ')}
 `;
-
-
-
 };
 
 fetch(all)
@@ -126,5 +112,6 @@ updateRandom.addEventListener("click", function() {
   return;
 });
 
+// Fetch your "ingredients: Hop -  food pairing,.." Add a filter on those arrays with a search bar.
 
-
+// function

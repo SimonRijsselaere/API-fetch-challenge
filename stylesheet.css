@@ -32,6 +32,22 @@ button{
     border-radius: 5px;
     margin: 10px;
 }
+button:hover{
+    box-shadow: 0 3px 10px white;
+}
+
+input{
+    border-style: none;
+    opacity: 0.7;
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px;
+    padding-left: 5px;
+}
+
+input:hover{
+    box-shadow: 0 3px 10px white;
+}
 
 #allbeers{
     padding-left: 30px;
