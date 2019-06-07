@@ -52,7 +52,7 @@ sortPageButton.addEventListener("click", function() {
 
 function displayOverviewBeer(data) {
   // let overviewBeer = data;
-  console.table(data);
+  // console.table(data);
   displayAllBeers.innerHTML = `
                                   ${Object.keys(data).map(key => (
                                     `<div id="cards" class="card d-inline-flex" style="width: 18rem;">
@@ -109,7 +109,7 @@ function displayRandomBeer(data) {
 
 fetch(all)
   .then((resp) => resp.json())
-  .then((data) => displayOverviewBeer(data));
+  .then((data) => displayIngredients(data));
 
 updateRandom.addEventListener("click", function() {
   fetch(random)
@@ -120,4 +120,12 @@ updateRandom.addEventListener("click", function() {
 
 // Fetch your "ingredients: Hop -  food pairing,.." Add a filter on those arrays with a search bar.
 
-// function
+// Fetch your "ingredients: Hop -  food pairing,.." Add a filter on those arrays with a search bar.
+
+function displayIngredients(data) {
+
+  let checkIngredient = `${Object.keys(data).map(key => (data[key].ingredients))}`;
+
+  console.table(checkIngredient);
+};
+
