@@ -115,6 +115,9 @@ function displayRandomBeer(data) {
                                               <li>description: ${data[0].description}</li>
                                               <li>PH-level: ${data[0].ph}</li>
                                               <li>contributed by: ${data[0].contributed_by}</li>
+                                              <li class="ingredient">malt: ${data[key].ingredients.malt[0].name} </li>
+                                              <li class="ingredient">hops: ${data[key].ingredients.hops[0].name} </li>
+                                              <li class="ingredient">yeast: ${data[key].ingredients.yeast} </li>
 
                                             </ul>
                                          </div>
