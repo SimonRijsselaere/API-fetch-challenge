@@ -11,6 +11,7 @@ const nextPage = document.querySelectorAll(".nextpage");
 const lastPage = document.querySelectorAll(".previouspage");
 let ingredientSpan = document.getElementsByClassName('ingredient');
 
+//basic call for loading page
 fetch(all)
   .then((resp) => resp.json())
   .then((data) => displayOverviewBeer(data));
@@ -30,7 +31,7 @@ nextPage.forEach(function(elem) {
   });
 });
 
-// Update list button and next page button grouped, loads next 80 beers
+// Update list button and next page button grouped, loads previous 80 beers
 lastPage.forEach(function(elem) {
   elem.addEventListener("click", function() {
     if (pageNumber === 1) {
@@ -60,13 +61,11 @@ sortPageButton.addEventListener("click", function() {
     }
     return 0;
   }
-
   data.sort(compare);
 });
 
+//Use fetched data to display it in template literal
 function displayOverviewBeer(data) {
-  // let overviewBeer = data;
-  // console.table(data);
   displayAllBeers.innerHTML = `
                                   ${Object.keys(data).map(key => (
                                     `<div id="cards" class="card d-inline-flex" style="width: 18rem;">
@@ -85,8 +84,8 @@ function displayOverviewBeer(data) {
                                             <li>PH-level: ${data[key].ph}</li>
                                             <li>contributed by: ${data[key].contributed_by}</li>
                                             <li class="ingredient">malt: ${data[key].ingredients.malt[0].name} </li>
-                                            <li class="ingredient">hops: ${data[key].ingredients.hops[0].name} </li>
-                                            <li class="ingredient">yeast: ${data[key].ingredients.yeast} </li>
+                                            <li>hops: ${data[key].ingredients.hops[0].name} </li>
+                                            <li>yeast: ${data[key].ingredients.yeast} </li>
                                           </ul>
                                          </div>
                                         </div>
@@ -98,7 +97,6 @@ function displayOverviewBeer(data) {
 
 function displayRandomBeer(data) {
   displayRandom.innerHTML = `
-
   ${Object.keys(data).map(key => (
                                     `<div id="cards" class="card d-inline-flex" style="width: 18rem;">
                                       <h5 class="card-title">${data[key].id}</h5>
@@ -129,9 +127,6 @@ function displayRandomBeer(data) {
 };
 
 
-fetch(all)
-  .then((resp) => resp.json())
-  .then((data) => displayIngredients(data));
 
 
 
@@ -142,17 +137,3 @@ updateRandom.addEventListener("click", function() {
     .then((data) => displayRandomBeer(data));
   return;
 });
-
-// Fetch your "ingredients: Hop -  food pairing,.." Add a filter on those arrays with a search bar.
-
-// Fetch your "ingredients: Hop -  food pairing,.." Add a filter on those arrays with a search bar.
-
-function displayIngredients(data) {
-
-  //let checkIngredient = `${Object.keys(data).map(key => (data[key].ingredients))}`;
-    for (var j = 0; j < data[i].ingredients.malt.length; j++) {
-      let checkIngredient = data[key].ingredients.malt[j].name;
-      console.log(checkIngredient);
-
-  }
-};
