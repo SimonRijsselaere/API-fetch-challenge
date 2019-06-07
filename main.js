@@ -9,6 +9,7 @@ const nextButton = document.getElementById('nextPage');
 const sortPageButton = document.getElementById('sortPage');
 const nextPage = document.querySelectorAll(".nextpage");
 const lastPage = document.querySelectorAll(".previouspage");
+let ingredientSpan = document.getElementsByClassName('ingredient');
 
 fetch(all)
   .then((resp) => resp.json())
@@ -16,7 +17,7 @@ fetch(all)
 
 // Update list button and next page button grouped, loads next 80 beers
 nextPage.forEach(function(elem) {
-   elem.addEventListener("click", function() {
+  elem.addEventListener("click", function() {
     if (pageNumber === 5) {
       return;
     }
@@ -31,7 +32,7 @@ nextPage.forEach(function(elem) {
 
 // Update list button and next page button grouped, loads next 80 beers
 lastPage.forEach(function(elem) {
-   elem.addEventListener("click", function() {
+  elem.addEventListener("click", function() {
     if (pageNumber === 1) {
       return;
     }
@@ -50,17 +51,17 @@ lastPage.forEach(function(elem) {
 // Sorts the page Alphabetic.
 sortPageButton.addEventListener("click", function() {
 
-  function compare( a, b ) {
-    if ( a.name < b.name ){
+  function compare(a, b) {
+    if (a.name < b.name) {
       return -1;
     }
-    if ( a.name > b.name ){
+    if (a.name > b.name) {
       return 1;
     }
     return 0;
   }
 
-  data.sort( compare );
+  data.sort(compare);
 });
 
 function displayOverviewBeer(data) {
@@ -83,6 +84,9 @@ function displayOverviewBeer(data) {
                                             <li>description: ${data[key].description}</li>
                                             <li>PH-level: ${data[key].ph}</li>
                                             <li>contributed by: ${data[key].contributed_by}</li>
+                                            <li class="ingredient">malt: ${data[key].ingredients.malt[0].name} </li>
+                                            <li class="ingredient">hops: ${data[key].ingredients.hops[0].name} </li>
+                                            <li class="ingredient">yeast: ${data[key].ingredients.yeast} </li>
                                           </ul>
                                          </div>
                                         </div>
@@ -93,31 +97,32 @@ function displayOverviewBeer(data) {
 };
 
 function displayRandomBeer(data) {
-  displayRandom.innerHTML =`
+  displayRandom.innerHTML = `
 
   ${Object.keys(data).map(key => (
                                     `<div id="cards" class="card d-inline-flex" style="width: 18rem;">
-                                    <h5 class="card-title">${data[key].id}</h5>
-  <img  class="beerImage card-img-top" src="${data[key].image_url}" alt="">
-      <div class="card-body">
-      <h5 class="card-title">${data[0].name}</h5>
-      <p class="card-text">${data[0].tagline}</p>
-      <a class="btn btn-primary" data-toggle="collapse" href="#${data[0].name}" role="button" aria-expanded="false" aria-controls="collapseExample">More info</a>
-  <div class="collapse mt-2" id="${data[0].name}">
-      <div class="card card-body">
-      <ul>
-      <li>alcohol level: ${data[0].abv}%</li>
-  <li>tip from the brewer: ${data[0].brewers_tips}</li>
-  <li>description: ${data[0].description}</li>
-  <li>PH-level: ${data[0].ph}</li>
-  <li>contributed by: ${data[0].contributed_by}</li>
-  </ul>
-  </div>
-  </div>
-  </div>
-  </div>`
-)).join(' ')}
-`;
+                                      <h5 class="card-title">${data[key].id}</h5>
+                                      <img  class="beerImage card-img-top" src="${data[key].image_url}" alt="">
+                                      <div class="card-body">
+                                        <h5 class="card-title">${data[0].name}</h5>
+                                        <p class="card-text">${data[0].tagline}</p>
+                                        <a class="btn btn-primary" data-toggle="collapse" href="#${data[0].name}" role="button" aria-expanded="false" aria-controls="collapseExample">More info</a>
+                                        <div class="collapse mt-2" id="${data[0].name}">
+                                          <div class="card card-body">
+                                            <ul>
+                                              <li>alcohol level: ${data[0].abv}%</li>
+                                              <li>tip from the brewer: ${data[0].brewers_tips}</li>
+                                              <li>description: ${data[0].description}</li>
+                                              <li>PH-level: ${data[0].ph}</li>
+                                              <li>contributed by: ${data[0].contributed_by}</li>
+
+                                            </ul>
+                                         </div>
+                                       </div>
+                                      </div>
+                                     </div>`
+                                      )).join(' ')}
+                                      `;
 };
 
 
@@ -141,8 +146,10 @@ updateRandom.addEventListener("click", function() {
 
 function displayIngredients(data) {
 
-  let checkIngredient = `${Object.keys(data).map(key => (data[key].ingredients))}`;
+  //let checkIngredient = `${Object.keys(data).map(key => (data[key].ingredients))}`;
+    for (var j = 0; j < data[i].ingredients.malt.length; j++) {
+      let checkIngredient = data[key].ingredients.malt[j].name;
+      console.log(checkIngredient);
 
-  console.table(checkIngredient);
+  }
 };
-
